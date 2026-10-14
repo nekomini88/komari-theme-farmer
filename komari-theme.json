@@ -2,7 +2,7 @@
   "name": "Komari-Farmer",
   "short": "Komari-Farmer",
   "description": "Pixel-art farm theme for Komari Monitor — four seasons of farm scenery, wood-plank cards, pixel fonts",
-  "version": "3.4.0",
+  "version": "3.4.1",
   "author": "Neko",
   "url": "https://github.com/nekomini88/komari-theme-farmer",
   "preview": "preview.png",
@@ -82,8 +82,8 @@
         "key": "themeVisualStyle",
         "name": "主题视觉风格",
         "type": "select",
-        "default": "stardew",
-        "options": "stardew,baseline",
+        "default": "farmer",
+        "options": "farmer,baseline",
         "help": "选择整体 UI 视觉风格：本主题的农场像素风格或默认风格。部分选项需要浏览器支持 CSS 变量。"
       },
       {

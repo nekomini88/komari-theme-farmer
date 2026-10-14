@@ -39,15 +39,15 @@ describe('spec.yaml', () => {
   })
 })
 
-it('mUST include stardew-visual-style reference', () => {
+it('mUST include farmer-visual-style reference', () => {
   const yaml = require('yaml')
   const data = yaml.parse(specText)
   const refs = data.references?.items ?? []
   expect(refs).toContain('farmer-visual-style')
 })
 
-it('mUST define themes.visual_style with allowed baseline+stardew', () => {
+it('mUST define themes.visual_style with allowed baseline+farmer', () => {
   const yaml = require('yaml')
   const data = yaml.parse(specText)
-  expect(data.themes?.visual_style?.allowed).toEqual(['stardew', 'baseline'])
+  expect(data.themes?.visual_style?.allowed).toEqual(['farmer', 'baseline'])
 })

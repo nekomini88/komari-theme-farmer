@@ -3,7 +3,7 @@ import { onMounted, watch } from 'vue'
 const KEY = 'komaritheme:theme'
 const KEY_DEFAULT = 'komaritheme:theme-default'
 const KEY_SETTINGS = 'komaritheme:theme-visual-style-settings'
-const ALLOWED = ['stardew', 'baseline'] as const
+const ALLOWED = ['farmer', 'baseline'] as const
 export type VisualStyle = (typeof ALLOWED)[number]
 
 function isVisualStyle(value: unknown): value is VisualStyle {
@@ -20,24 +20,26 @@ function writeStorageItem(key: string, value: string) {
   catch {}
 }
 
-function parse(raw: string | null, fallbackFromSettings: VisualStyle = 'stardew'): VisualStyle {
+function parse(raw: string | null, fallbackFromSettings: VisualStyle = 'farmer'): VisualStyle {
   if (!raw)
     return fallbackFromSettings
   const v = raw.trim()
+  // 历史值（如更名前存的旧标识）在这里不合法，自然回落到 fallback，
+  // 而 fallback 即当前默认风格，行为与显式迁移一致，故无需迁移表。
   return isVisualStyle(v) ? v : fallbackFromSettings
 }
 
 function apply(style: VisualStyle) {
   const root = document.documentElement
-  if (style === 'stardew') {
-    root.setAttribute('data-theme', 'stardew')
+  if (style === 'farmer') {
+    root.setAttribute('data-theme', 'farmer')
   }
   else {
     root.removeAttribute('data-theme')
   }
 }
 
-let current: VisualStyle = 'stardew'
+let current: VisualStyle = 'farmer'
 let isReady = false
 
 export function useVisualStyle() {
@@ -48,7 +50,7 @@ export function useVisualStyle() {
     const fallback = readStorageItem(KEY_DEFAULT)
     if (fallback !== null)
       return parse(fallback)
-    return parse(readStorageItem(KEY_SETTINGS), 'stardew')
+    return parse(readStorageItem(KEY_SETTINGS), 'farmer')
   }
 
   onMounted(() => {

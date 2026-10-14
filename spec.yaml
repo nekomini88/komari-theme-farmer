@@ -20,12 +20,12 @@ themes:
   color_palette_options:
     - sunrise
     - emerald
-    - stardew
+    - farmer
 
   visual_style:
-    default: stardew
+    default: farmer
     allowed:
-      - stardew
+      - farmer
       - baseline
     storage_keys:
       explicit: komaritheme:theme

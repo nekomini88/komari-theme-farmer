@@ -5,7 +5,7 @@ Activation: `data-theme="farmer"` on `<html>` via `useVisualStyle`
 
 ## Theme options
 
-- `stardew`: pixel/ pastoral UI kit, pixel panoramic background, pixel font for key cards.
+- `farmer`: pixel/ pastoral UI kit, pixel panoramic background, pixel font for key cards.
 - `baseline`: default neon/shader background.
 
 ## Token requirements

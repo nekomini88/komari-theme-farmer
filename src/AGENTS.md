@@ -23,7 +23,7 @@ This document applies to `/src` only. Keep changes aligned with the current Vue 
 
 - Wraps a `reka-ui` primitive (or composes lower-level primitives) when applicable.
 - Declares variants with `class-variance-authority` and merges classes via `cn()` from `@/lib/utils` (which combines `clsx` + `tailwind-merge`).
-- Uses Tailwind utilities; design tokens are CSS variables defined in `@/styles/main.css` (OKLCH, with `.dark` overrides via `@custom-variant dark`).
+- Uses Tailwind utilities; design tokens are CSS variables defined in `@/styles/v2/tokens/tokens.css` (OKLCH, with `.dark` overrides via `@custom-variant dark`).
 
 When you need a new piece of UI:
 
@@ -77,12 +77,12 @@ When you need a new piece of UI:
 
 ## Styles
 
-- Single global stylesheet: `@/styles/main.css`. It imports `tailwindcss` and `tw-animate-css`, declares the `dark` custom variant, and defines OKLCH design tokens for both modes. **No SCSS, no UnoCSS.**
+- Single global stylesheet entry: `@/styles/v2.css`（分 tokens/ base/ components/ 三层）。 It imports `tailwindcss` and `tw-animate-css`, declares the `dark` custom variant, and defines OKLCH design tokens for both modes. **No SCSS, no UnoCSS.**
 - Component-level styling should be Tailwind utilities composed with `cn()`, not scoped `<style>` blocks, unless there is a genuine reason (e.g. animations or selectors Tailwind cannot express cleanly).
 
 ## Validation
 
 - Validate source-tree changes with:
-  - `bun run lint`
+  - `bun run test`（vitest，当前 422 条用例，改动必须全绿）
+  - `bunx vue-tsc --noEmit`
   - `bun run build`
-- There is no test suite. Do not invent one.

@@ -1,5 +1,27 @@
 # Changelog
 
+## [3.4.1] - 2026-10-14
+
+内部标识符去品牌残留：视觉风格键 `'stardew'` → `'farmer'`（成套修改，用户指示）。
+
+### Changed
+- `src/composables/useVisualStyle.ts`：白名单 `ALLOWED`、`apply()` 的 `data-theme` 值、
+  两处 fallback 全部换为 `farmer`；`komari-theme.json` 的 `default`/`options` 同步；
+  `spec.yaml` 与 `references/farmer-visual-style.md` 同步。
+- **测试断言同步更新**（`spec_yaml.test.ts` 3 处、`theme_integration.test.ts` 10 处）：
+  这是**契约本身改名**，不是"为了让测试变绿而改断言"——旧值是待清除的遗留标识。
+- 顺带修 `src/AGENTS.md` 的同类陈旧说明：删掉「There is no test suite」，
+  已废弃的 `@/styles/main.css` 改为实际入口 `@/styles/v2.css` 与 `v2/tokens/tokens.css`。
+
+### 老数据兼容
+访客 localStorage 里可能仍存有旧标识，新代码判定其不合法后回落到 fallback，
+而 fallback 即当前默认风格 `farmer`——**行为与显式迁移一致**，故未保留迁移表，
+以免旧词继续留在源码与构建产物中。无需任何用户操作。
+
+### Unchanged
+- 本次零 CSS 改动：构建产物 `index-CW_PQnhn.css`（56997 B）与 3.4.0 及重构前**逐字节相同**。
+- 仓库历史（CHANGELOG / ADR 中的旧名叙述）按惯例保留，属于历史记录而非遗留代码。
+
 ## [3.4.0] - 2026-10-14
 
 全量重构：**只动结构，不动行为**。每个阶段独立提交、可单独回退，全部以

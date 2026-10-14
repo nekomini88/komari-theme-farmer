@@ -1,7 +1,7 @@
 {
   "name": "komari-theme-farmer",
   "type": "module",
-  "version": "3.4.0",
+  "version": "3.4.1",
   "packageManager": "bun@1.3.14",
   "author": "Neko",
   "license": "MIT",
